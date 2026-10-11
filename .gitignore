@@ -1,0 +1,5 @@
+__pycache__/
+*.pyc
+.ths_auth.json
+.ths_login_flow.json
+.ths_captcha/

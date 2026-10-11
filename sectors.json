@@ -1,0 +1,2109 @@
+{
+ "scanned_at": "2026-10-12T01:44:18",
+ "sectors": {
+  "881101": {
+   "name": "种植业与林业",
+   "type": "industry"
+  },
+  "881102": {
+   "name": "养殖业",
+   "type": "industry"
+  },
+  "881103": {
+   "name": "农产品加工",
+   "type": "industry"
+  },
+  "881104": {
+   "name": "农业服务",
+   "type": "industry"
+  },
+  "881105": {
+   "name": "煤炭开采加工",
+   "type": "industry"
+  },
+  "881107": {
+   "name": "油气开采及服务",
+   "type": "industry"
+  },
+  "881108": {
+   "name": "化学原料",
+   "type": "industry"
+  },
+  "881109": {
+   "name": "化学制品",
+   "type": "industry"
+  },
+  "881110": {
+   "name": "化工合成材料",
+   "type": "industry"
+  },
+  "881112": {
+   "name": "钢铁",
+   "type": "industry"
+  },
+  "881114": {
+   "name": "金属新材料",
+   "type": "industry"
+  },
+  "881115": {
+   "name": "建筑材料",
+   "type": "industry"
+  },
+  "881116": {
+   "name": "建筑装饰",
+   "type": "industry"
+  },
+  "881117": {
+   "name": "通用设备",
+   "type": "industry"
+  },
+  "881118": {
+   "name": "专用设备",
+   "type": "industry"
+  },
+  "881121": {
+   "name": "半导体",
+   "type": "industry"
+  },
+  "881122": {
+   "name": "光学光电子",
+   "type": "industry"
+  },
+  "881123": {
+   "name": "其他电子",
+   "type": "industry"
+  },
+  "881124": {
+   "name": "消费电子",
+   "type": "industry"
+  },
+  "881125": {
+   "name": "汽车整车",
+   "type": "industry"
+  },
+  "881126": {
+   "name": "汽车零部件",
+   "type": "industry"
+  },
+  "881127": {
+   "name": "非汽车交运",
+   "type": "industry"
+  },
+  "881128": {
+   "name": "汽车服务及其他",
+   "type": "industry"
+  },
+  "881129": {
+   "name": "通信设备",
+   "type": "industry"
+  },
+  "881130": {
+   "name": "计算机设备",
+   "type": "industry"
+  },
+  "881131": {
+   "name": "白色家电",
+   "type": "industry"
+  },
+  "881132": {
+   "name": "黑色家电",
+   "type": "industry"
+  },
+  "881133": {
+   "name": "饮料制造",
+   "type": "industry"
+  },
+  "881134": {
+   "name": "食品加工制造",
+   "type": "industry"
+  },
+  "881135": {
+   "name": "纺织制造",
+   "type": "industry"
+  },
+  "881136": {
+   "name": "服装家纺",
+   "type": "industry"
+  },
+  "881137": {
+   "name": "造纸",
+   "type": "industry"
+  },
+  "881138": {
+   "name": "包装印刷",
+   "type": "industry"
+  },
+  "881139": {
+   "name": "家居用品",
+   "type": "industry"
+  },
+  "881140": {
+   "name": "化学制药",
+   "type": "industry"
+  },
+  "881141": {
+   "name": "中药",
+   "type": "industry"
+  },
+  "881142": {
+   "name": "生物制品",
+   "type": "industry"
+  },
+  "881143": {
+   "name": "医药商业",
+   "type": "industry"
+  },
+  "881144": {
+   "name": "医疗器械",
+   "type": "industry"
+  },
+  "881145": {
+   "name": "电力",
+   "type": "industry"
+  },
+  "881146": {
+   "name": "燃气",
+   "type": "industry"
+  },
+  "881148": {
+   "name": "港口航运",
+   "type": "industry"
+  },
+  "881149": {
+   "name": "公路铁路运输",
+   "type": "industry"
+  },
+  "881151": {
+   "name": "机场航运",
+   "type": "industry"
+  },
+  "881152": {
+   "name": "物流",
+   "type": "industry"
+  },
+  "881153": {
+   "name": "房地产",
+   "type": "industry"
+  },
+  "881155": {
+   "name": "银行",
+   "type": "industry"
+  },
+  "881156": {
+   "name": "保险",
+   "type": "industry"
+  },
+  "881157": {
+   "name": "证券",
+   "type": "industry"
+  },
+  "881158": {
+   "name": "零售",
+   "type": "industry"
+  },
+  "881159": {
+   "name": "贸易",
+   "type": "industry"
+  },
+  "881160": {
+   "name": "旅游及酒店",
+   "type": "industry"
+  },
+  "881162": {
+   "name": "通信服务",
+   "type": "industry"
+  },
+  "881163": {
+   "name": "计算机应用",
+   "type": "industry"
+  },
+  "881164": {
+   "name": "文化传媒",
+   "type": "industry"
+  },
+  "881165": {
+   "name": "综合",
+   "type": "industry"
+  },
+  "881166": {
+   "name": "军工装备",
+   "type": "industry"
+  },
+  "881167": {
+   "name": "非金属材料",
+   "type": "industry"
+  },
+  "881168": {
+   "name": "工业金属",
+   "type": "industry"
+  },
+  "881169": {
+   "name": "贵金属",
+   "type": "industry"
+  },
+  "881170": {
+   "name": "小金属",
+   "type": "industry"
+  },
+  "881171": {
+   "name": "自动化设备",
+   "type": "industry"
+  },
+  "881172": {
+   "name": "电子化学品",
+   "type": "industry"
+  },
+  "881173": {
+   "name": "小家电",
+   "type": "industry"
+  },
+  "881174": {
+   "name": "厨卫电器",
+   "type": "industry"
+  },
+  "881175": {
+   "name": "医疗服务",
+   "type": "industry"
+  },
+  "881176": {
+   "name": "房地产服务",
+   "type": "industry"
+  },
+  "881177": {
+   "name": "互联网电商",
+   "type": "industry"
+  },
+  "881178": {
+   "name": "教育",
+   "type": "industry"
+  },
+  "881179": {
+   "name": "其他社会服务",
+   "type": "industry"
+  },
+  "881180": {
+   "name": "石油加工贸易",
+   "type": "industry"
+  },
+  "881181": {
+   "name": "环境治理",
+   "type": "industry"
+  },
+  "881182": {
+   "name": "美容护理",
+   "type": "industry"
+  },
+  "881263": {
+   "name": "农化制品",
+   "type": "industry"
+  },
+  "881264": {
+   "name": "化学纤维",
+   "type": "industry"
+  },
+  "881265": {
+   "name": "塑料制品",
+   "type": "industry"
+  },
+  "881266": {
+   "name": "橡胶制品",
+   "type": "industry"
+  },
+  "881267": {
+   "name": "能源金属",
+   "type": "industry"
+  },
+  "881268": {
+   "name": "工程机械",
+   "type": "industry"
+  },
+  "881269": {
+   "name": "轨交设备",
+   "type": "industry"
+  },
+  "881270": {
+   "name": "元件",
+   "type": "industry"
+  },
+  "881271": {
+   "name": "IT服务",
+   "type": "industry"
+  },
+  "881272": {
+   "name": "软件开发",
+   "type": "industry"
+  },
+  "881273": {
+   "name": "白酒",
+   "type": "industry"
+  },
+  "881274": {
+   "name": "影视院线",
+   "type": "industry"
+  },
+  "881275": {
+   "name": "游戏",
+   "type": "industry"
+  },
+  "881276": {
+   "name": "军工电子",
+   "type": "industry"
+  },
+  "881277": {
+   "name": "电机",
+   "type": "industry"
+  },
+  "881278": {
+   "name": "电网设备",
+   "type": "industry"
+  },
+  "881279": {
+   "name": "光伏设备",
+   "type": "industry"
+  },
+  "881280": {
+   "name": "风电设备",
+   "type": "industry"
+  },
+  "881281": {
+   "name": "电池",
+   "type": "industry"
+  },
+  "881282": {
+   "name": "其他电源设备",
+   "type": "industry"
+  },
+  "881283": {
+   "name": "多元金融",
+   "type": "industry"
+  },
+  "881284": {
+   "name": "环保设备",
+   "type": "industry"
+  },
+  "885284": {
+   "name": "稀缺资源",
+   "type": "concept"
+  },
+  "885311": {
+   "name": "智能电网",
+   "type": "concept"
+  },
+  "885312": {
+   "name": "物联网",
+   "type": "concept"
+  },
+  "885333": {
+   "name": "移动支付",
+   "type": "concept"
+  },
+  "885338": {
+   "name": "融资融券",
+   "type": "concept"
+  },
+  "885343": {
+   "name": "稀土永磁",
+   "type": "concept"
+  },
+  "885345": {
+   "name": "新疆振兴",
+   "type": "concept"
+  },
+  "885355": {
+   "name": "石墨烯",
+   "type": "concept"
+  },
+  "885362": {
+   "name": "云计算",
+   "type": "concept"
+  },
+  "885372": {
+   "name": "页岩气",
+   "type": "concept"
+  },
+  "885376": {
+   "name": "苹果概念",
+   "type": "concept"
+  },
+  "885378": {
+   "name": "智慧城市",
+   "type": "concept"
+  },
+  "885386": {
+   "name": "建筑节能",
+   "type": "concept"
+  },
+  "885398": {
+   "name": "煤化工概念",
+   "type": "concept"
+  },
+  "885402": {
+   "name": "智能医疗",
+   "type": "concept"
+  },
+  "885403": {
+   "name": "生物医药",
+   "type": "concept"
+  },
+  "885406": {
+   "name": "食品安全",
+   "type": "concept"
+  },
+  "885410": {
+   "name": "固废处理",
+   "type": "concept"
+  },
+  "885412": {
+   "name": "污水处理",
+   "type": "concept"
+  },
+  "885413": {
+   "name": "创投",
+   "type": "concept"
+  },
+  "885418": {
+   "name": "文化传媒概念",
+   "type": "concept"
+  },
+  "885420": {
+   "name": "电子商务",
+   "type": "concept"
+  },
+  "885423": {
+   "name": "安防",
+   "type": "concept"
+  },
+  "885425": {
+   "name": "特高压",
+   "type": "concept"
+  },
+  "885426": {
+   "name": "海工装备",
+   "type": "concept"
+  },
+  "885427": {
+   "name": "高端装备",
+   "type": "concept"
+  },
+  "885428": {
+   "name": "特钢概念",
+   "type": "concept"
+  },
+  "885430": {
+   "name": "天然气",
+   "type": "concept"
+  },
+  "885431": {
+   "name": "新能源汽车",
+   "type": "concept"
+  },
+  "885433": {
+   "name": "节能照明",
+   "type": "concept"
+  },
+  "885439": {
+   "name": "土地流转",
+   "type": "concept"
+  },
+  "885452": {
+   "name": "大数据",
+   "type": "concept"
+  },
+  "885454": {
+   "name": "智能穿戴",
+   "type": "concept"
+  },
+  "885456": {
+   "name": "互联网金融",
+   "type": "concept"
+  },
+  "885457": {
+   "name": "手机游戏",
+   "type": "concept"
+  },
+  "885459": {
+   "name": "网络安全",
+   "type": "concept"
+  },
+  "885461": {
+   "name": "充电桩",
+   "type": "concept"
+  },
+  "885462": {
+   "name": "乳业",
+   "type": "concept"
+  },
+  "885467": {
+   "name": "特斯拉概念",
+   "type": "concept"
+  },
+  "885472": {
+   "name": "上海自贸区",
+   "type": "concept"
+  },
+  "885478": {
+   "name": "智能家居",
+   "type": "concept"
+  },
+  "885480": {
+   "name": "在线教育",
+   "type": "concept"
+  },
+  "885487": {
+   "name": "天津自贸区",
+   "type": "concept"
+  },
+  "885490": {
+   "name": "民营医院",
+   "type": "concept"
+  },
+  "885493": {
+   "name": "上海国企改革",
+   "type": "concept"
+  },
+  "885494": {
+   "name": "一带一路",
+   "type": "concept"
+  },
+  "885497": {
+   "name": "旅游概念",
+   "type": "concept"
+  },
+  "885502": {
+   "name": "冷链物流",
+   "type": "concept"
+  },
+  "885505": {
+   "name": "生态农业",
+   "type": "concept"
+  },
+  "885508": {
+   "name": "禽流感",
+   "type": "concept"
+  },
+  "885514": {
+   "name": "京津冀一体化",
+   "type": "concept"
+  },
+  "885517": {
+   "name": "机器人概念",
+   "type": "concept"
+  },
+  "885520": {
+   "name": "沪股通",
+   "type": "concept"
+  },
+  "885521": {
+   "name": "粤港澳大湾区",
+   "type": "concept"
+  },
+  "885522": {
+   "name": "养老概念",
+   "type": "concept"
+  },
+  "885525": {
+   "name": "白酒概念",
+   "type": "concept"
+  },
+  "885530": {
+   "name": "黄金概念",
+   "type": "concept"
+  },
+  "885531": {
+   "name": "光伏概念",
+   "type": "concept"
+  },
+  "885537": {
+   "name": "3D打印",
+   "type": "concept"
+  },
+  "885539": {
+   "name": "医疗器械概念",
+   "type": "concept"
+  },
+  "885540": {
+   "name": "三胎概念",
+   "type": "concept"
+  },
+  "885543": {
+   "name": "家用电器",
+   "type": "concept"
+  },
+  "885545": {
+   "name": "汽车电子",
+   "type": "concept"
+  },
+  "885551": {
+   "name": "氟化工概念",
+   "type": "concept"
+  },
+  "885552": {
+   "name": "小金属概念",
+   "type": "concept"
+  },
+  "885555": {
+   "name": "PM2.5",
+   "type": "concept"
+  },
+  "885556": {
+   "name": "5G",
+   "type": "concept"
+  },
+  "885560": {
+   "name": "金改",
+   "type": "concept"
+  },
+  "885562": {
+   "name": "高铁",
+   "type": "concept"
+  },
+  "885563": {
+   "name": "节能环保",
+   "type": "concept"
+  },
+  "885564": {
+   "name": "无人机",
+   "type": "concept"
+  },
+  "885566": {
+   "name": "大飞机",
+   "type": "concept"
+  },
+  "885568": {
+   "name": "国产软件",
+   "type": "concept"
+  },
+  "885570": {
+   "name": "期货概念",
+   "type": "concept"
+  },
+  "885571": {
+   "name": "核电",
+   "type": "concept"
+  },
+  "885572": {
+   "name": "水利",
+   "type": "concept"
+  },
+  "885573": {
+   "name": "猪肉",
+   "type": "concept"
+  },
+  "885574": {
+   "name": "卫星导航",
+   "type": "concept"
+  },
+  "885578": {
+   "name": "基因测序",
+   "type": "concept"
+  },
+  "885580": {
+   "name": "足球概念",
+   "type": "concept"
+  },
+  "885586": {
+   "name": "职业教育",
+   "type": "concept"
+  },
+  "885587": {
+   "name": "举牌",
+   "type": "concept"
+  },
+  "885591": {
+   "name": "中韩自贸区",
+   "type": "concept"
+  },
+  "885595": {
+   "name": "央企国企改革",
+   "type": "concept"
+  },
+  "885598": {
+   "name": "新股与次新股",
+   "type": "concept"
+  },
+  "885603": {
+   "name": "网络游戏",
+   "type": "concept"
+  },
+  "885611": {
+   "name": "阿里巴巴概念",
+   "type": "concept"
+  },
+  "885615": {
+   "name": "体育产业",
+   "type": "concept"
+  },
+  "885617": {
+   "name": "福建自贸区",
+   "type": "concept"
+  },
+  "885620": {
+   "name": "参股券商",
+   "type": "concept"
+  },
+  "885623": {
+   "name": "参股保险",
+   "type": "concept"
+  },
+  "885629": {
+   "name": "农村电商",
+   "type": "concept"
+  },
+  "885633": {
+   "name": "染料",
+   "type": "concept"
+  },
+  "885640": {
+   "name": "草甘膦",
+   "type": "concept"
+  },
+  "885641": {
+   "name": "风电",
+   "type": "concept"
+  },
+  "885642": {
+   "name": "跨境电商",
+   "type": "concept"
+  },
+  "885647": {
+   "name": "互联网彩票",
+   "type": "concept"
+  },
+  "885650": {
+   "name": "碳纤维",
+   "type": "concept"
+  },
+  "885652": {
+   "name": "钛白粉概念",
+   "type": "concept"
+  },
+  "885657": {
+   "name": "供应链金融",
+   "type": "concept"
+  },
+  "885661": {
+   "name": "医药电商",
+   "type": "concept"
+  },
+  "885662": {
+   "name": "车联网(车路协同)",
+   "type": "concept"
+  },
+  "885663": {
+   "name": "证金持股",
+   "type": "concept"
+  },
+  "885690": {
+   "name": "PPP概念",
+   "type": "concept"
+  },
+  "885692": {
+   "name": "地下管网",
+   "type": "concept"
+  },
+  "885694": {
+   "name": "深股通",
+   "type": "concept"
+  },
+  "885697": {
+   "name": "深圳国企改革",
+   "type": "concept"
+  },
+  "885699": {
+   "name": "ST板块",
+   "type": "concept"
+  },
+  "885700": {
+   "name": "军工",
+   "type": "concept"
+  },
+  "885703": {
+   "name": "健康中国",
+   "type": "concept"
+  },
+  "885705": {
+   "name": "乡村振兴",
+   "type": "concept"
+  },
+  "885706": {
+   "name": "农机",
+   "type": "concept"
+  },
+  "885709": {
+   "name": "虚拟现实",
+   "type": "concept"
+  },
+  "885710": {
+   "name": "锂电池概念",
+   "type": "concept"
+  },
+  "885728": {
+   "name": "人工智能",
+   "type": "concept"
+  },
+  "885730": {
+   "name": "量子科技",
+   "type": "concept"
+  },
+  "885733": {
+   "name": "航运概念",
+   "type": "concept"
+  },
+  "885734": {
+   "name": "广东自贸区",
+   "type": "concept"
+  },
+  "885736": {
+   "name": "无人驾驶",
+   "type": "concept"
+  },
+  "885737": {
+   "name": "电子竞技",
+   "type": "concept"
+  },
+  "885738": {
+   "name": "OLED",
+   "type": "concept"
+  },
+  "885739": {
+   "name": "股权转让(并购重组)",
+   "type": "concept"
+  },
+  "885740": {
+   "name": "化债概念(AMC概念)",
+   "type": "concept"
+  },
+  "885741": {
+   "name": "中字头股票",
+   "type": "concept"
+  },
+  "885742": {
+   "name": "摘帽",
+   "type": "concept"
+  },
+  "885743": {
+   "name": "军民融合",
+   "type": "concept"
+  },
+  "885744": {
+   "name": "雄安新区",
+   "type": "concept"
+  },
+  "885745": {
+   "name": "MSCI概念",
+   "type": "concept"
+  },
+  "885747": {
+   "name": "共享单车",
+   "type": "concept"
+  },
+  "885748": {
+   "name": "可燃冰",
+   "type": "concept"
+  },
+  "885749": {
+   "name": "蚂蚁集团概念",
+   "type": "concept"
+  },
+  "885750": {
+   "name": "特色小镇",
+   "type": "concept"
+  },
+  "885753": {
+   "name": "网约车",
+   "type": "concept"
+  },
+  "885754": {
+   "name": "微信小程序",
+   "type": "concept"
+  },
+  "885756": {
+   "name": "芯片概念",
+   "type": "concept"
+  },
+  "885757": {
+   "name": "区块链",
+   "type": "concept"
+  },
+  "885758": {
+   "name": "租售同权",
+   "type": "concept"
+  },
+  "885759": {
+   "name": "人脸识别",
+   "type": "concept"
+  },
+  "885760": {
+   "name": "装配式建筑",
+   "type": "concept"
+  },
+  "885761": {
+   "name": "超级品牌",
+   "type": "concept"
+  },
+  "885764": {
+   "name": "自由贸易港",
+   "type": "concept"
+  },
+  "885765": {
+   "name": "互联网医疗",
+   "type": "concept"
+  },
+  "885766": {
+   "name": "智能交通",
+   "type": "concept"
+  },
+  "885767": {
+   "name": "互联网保险",
+   "type": "concept"
+  },
+  "885768": {
+   "name": "无人零售",
+   "type": "concept"
+  },
+  "885769": {
+   "name": "细胞免疫治疗",
+   "type": "concept"
+  },
+  "885770": {
+   "name": "智能物流",
+   "type": "concept"
+  },
+  "885771": {
+   "name": "智能音箱",
+   "type": "concept"
+  },
+  "885772": {
+   "name": "语音技术",
+   "type": "concept"
+  },
+  "885774": {
+   "name": "无线充电",
+   "type": "concept"
+  },
+  "885775": {
+   "name": "燃料电池",
+   "type": "concept"
+  },
+  "885779": {
+   "name": "腾讯概念",
+   "type": "concept"
+  },
+  "885780": {
+   "name": "啤酒概念",
+   "type": "concept"
+  },
+  "885781": {
+   "name": "石墨电极",
+   "type": "concept"
+  },
+  "885782": {
+   "name": "水泥概念",
+   "type": "concept"
+  },
+  "885783": {
+   "name": "工业互联网",
+   "type": "concept"
+  },
+  "885784": {
+   "name": "新零售",
+   "type": "concept"
+  },
+  "885785": {
+   "name": "小米概念",
+   "type": "concept"
+  },
+  "885786": {
+   "name": "富士康概念",
+   "type": "concept"
+  },
+  "885787": {
+   "name": "独角兽概念",
+   "type": "concept"
+  },
+  "885788": {
+   "name": "网络直播",
+   "type": "concept"
+  },
+  "885789": {
+   "name": "宁德时代概念",
+   "type": "concept"
+  },
+  "885790": {
+   "name": "边缘计算",
+   "type": "concept"
+  },
+  "885791": {
+   "name": "知识产权保护",
+   "type": "concept"
+  },
+  "885792": {
+   "name": "赛马概念",
+   "type": "concept"
+  },
+  "885795": {
+   "name": "国产航母",
+   "type": "concept"
+  },
+  "885796": {
+   "name": "送转填权",
+   "type": "concept"
+  },
+  "885797": {
+   "name": "百度概念",
+   "type": "concept"
+  },
+  "885798": {
+   "name": "燃料乙醇",
+   "type": "concept"
+  },
+  "885800": {
+   "name": "消费电子概念",
+   "type": "concept"
+  },
+  "885805": {
+   "name": "芬太尼",
+   "type": "concept"
+  },
+  "885806": {
+   "name": "华为概念",
+   "type": "concept"
+  },
+  "885808": {
+   "name": "养鸡",
+   "type": "concept"
+  },
+  "885809": {
+   "name": "柔性屏(折叠屏)",
+   "type": "concept"
+  },
+  "885811": {
+   "name": "玉米",
+   "type": "concept"
+  },
+  "885812": {
+   "name": "农业种植",
+   "type": "concept"
+  },
+  "885814": {
+   "name": "信托概念",
+   "type": "concept"
+  },
+  "885816": {
+   "name": "超清视频",
+   "type": "concept"
+  },
+  "885818": {
+   "name": "工业大麻",
+   "type": "concept"
+  },
+  "885819": {
+   "name": "电力物联网",
+   "type": "concept"
+  },
+  "885820": {
+   "name": "数字孪生",
+   "type": "concept"
+  },
+  "885823": {
+   "name": "氢能源",
+   "type": "concept"
+  },
+  "885825": {
+   "name": "冰雪产业",
+   "type": "concept"
+  },
+  "885827": {
+   "name": "横琴新区",
+   "type": "concept"
+  },
+  "885829": {
+   "name": "丙烯酸",
+   "type": "concept"
+  },
+  "885831": {
+   "name": "超级真菌",
+   "type": "concept"
+  },
+  "885832": {
+   "name": "长三角一体化",
+   "type": "concept"
+  },
+  "885834": {
+   "name": "华为汽车",
+   "type": "concept"
+  },
+  "885835": {
+   "name": "参股银行",
+   "type": "concept"
+  },
+  "885838": {
+   "name": "眼科医疗",
+   "type": "concept"
+  },
+  "885839": {
+   "name": "人造肉",
+   "type": "concept"
+  },
+  "885840": {
+   "name": "人民币贬值受益",
+   "type": "concept"
+  },
+  "885841": {
+   "name": "草地贪夜蛾防治",
+   "type": "concept"
+  },
+  "885842": {
+   "name": "数字乡村",
+   "type": "concept"
+  },
+  "885843": {
+   "name": "华为海思概念股",
+   "type": "concept"
+  },
+  "885844": {
+   "name": "国产操作系统",
+   "type": "concept"
+  },
+  "885845": {
+   "name": "生物疫苗",
+   "type": "concept"
+  },
+  "885846": {
+   "name": "动物疫苗",
+   "type": "concept"
+  },
+  "885849": {
+   "name": "黑龙江自贸区",
+   "type": "concept"
+  },
+  "885851": {
+   "name": "烟草",
+   "type": "concept"
+  },
+  "885852": {
+   "name": "青蒿素",
+   "type": "concept"
+  },
+  "885854": {
+   "name": "垃圾分类",
+   "type": "concept"
+  },
+  "885856": {
+   "name": "仿制药一致性评价",
+   "type": "concept"
+  },
+  "885860": {
+   "name": "中船系",
+   "type": "concept"
+  },
+  "885861": {
+   "name": "ETC",
+   "type": "concept"
+  },
+  "885863": {
+   "name": "磷化工",
+   "type": "concept"
+  },
+  "885864": {
+   "name": "光刻胶",
+   "type": "concept"
+  },
+  "885865": {
+   "name": "金属钴",
+   "type": "concept"
+  },
+  "885866": {
+   "name": "数字货币",
+   "type": "concept"
+  },
+  "885868": {
+   "name": "无线耳机",
+   "type": "concept"
+  },
+  "885869": {
+   "name": "一季报预增",
+   "type": "concept"
+  },
+  "885871": {
+   "name": "胎压监测",
+   "type": "concept"
+  },
+  "885873": {
+   "name": "分拆上市意愿",
+   "type": "concept"
+  },
+  "885874": {
+   "name": "云游戏",
+   "type": "concept"
+  },
+  "885875": {
+   "name": "MiniLED",
+   "type": "concept"
+  },
+  "885876": {
+   "name": "网红经济",
+   "type": "concept"
+  },
+  "885877": {
+   "name": "转基因",
+   "type": "concept"
+  },
+  "885878": {
+   "name": "HJT电池",
+   "type": "concept"
+  },
+  "885879": {
+   "name": "流感",
+   "type": "concept"
+  },
+  "885880": {
+   "name": "口罩",
+   "type": "concept"
+  },
+  "885881": {
+   "name": "云办公",
+   "type": "concept"
+  },
+  "885882": {
+   "name": "消毒剂",
+   "type": "concept"
+  },
+  "885883": {
+   "name": "医疗废物处理",
+   "type": "concept"
+  },
+  "885884": {
+   "name": "航空发动机",
+   "type": "concept"
+  },
+  "885886": {
+   "name": "超级电容",
+   "type": "concept"
+  },
+  "885887": {
+   "name": "数据中心(AIDC)",
+   "type": "concept"
+  },
+  "885888": {
+   "name": "C2M概念",
+   "type": "concept"
+  },
+  "885889": {
+   "name": "富媒体",
+   "type": "concept"
+  },
+  "885890": {
+   "name": "抖音概念(字节概念)",
+   "type": "concept"
+  },
+  "885892": {
+   "name": "REITs概念",
+   "type": "concept"
+  },
+  "885893": {
+   "name": "国家大基金持股",
+   "type": "concept"
+  },
+  "885894": {
+   "name": "海南自贸区",
+   "type": "concept"
+  },
+  "885897": {
+   "name": "中芯国际概念",
+   "type": "concept"
+  },
+  "885898": {
+   "name": "免税店",
+   "type": "concept"
+  },
+  "885899": {
+   "name": "新型烟草(电子烟)",
+   "type": "concept"
+  },
+  "885900": {
+   "name": "NMN概念",
+   "type": "concept"
+  },
+  "885901": {
+   "name": "可降解塑料",
+   "type": "concept"
+  },
+  "885902": {
+   "name": "汽车拆解概念",
+   "type": "concept"
+  },
+  "885903": {
+   "name": "环氧丙烷",
+   "type": "concept"
+  },
+  "885904": {
+   "name": "代糖概念",
+   "type": "concept"
+  },
+  "885905": {
+   "name": "注册制次新股",
+   "type": "concept"
+  },
+  "885907": {
+   "name": "科创次新股",
+   "type": "concept"
+  },
+  "885908": {
+   "name": "第三代半导体",
+   "type": "concept"
+  },
+  "885909": {
+   "name": "辅助生殖",
+   "type": "concept"
+  },
+  "885910": {
+   "name": "拼多多概念",
+   "type": "concept"
+  },
+  "885911": {
+   "name": "社区团购",
+   "type": "concept"
+  },
+  "885912": {
+   "name": "有机硅概念",
+   "type": "concept"
+  },
+  "885913": {
+   "name": "医美概念",
+   "type": "concept"
+  },
+  "885914": {
+   "name": "煤炭概念",
+   "type": "concept"
+  },
+  "885915": {
+   "name": "物业管理",
+   "type": "concept"
+  },
+  "885916": {
+   "name": "同花顺漂亮100",
+   "type": "concept"
+  },
+  "885918": {
+   "name": "快手概念",
+   "type": "concept"
+  },
+  "885919": {
+   "name": "碳中和",
+   "type": "concept"
+  },
+  "885920": {
+   "name": "光伏建筑一体化",
+   "type": "concept"
+  },
+  "885921": {
+   "name": "储能",
+   "type": "concept"
+  },
+  "885922": {
+   "name": "盐湖提锂",
+   "type": "concept"
+  },
+  "885923": {
+   "name": "鸿蒙概念",
+   "type": "concept"
+  },
+  "885924": {
+   "name": "共同富裕示范区",
+   "type": "concept"
+  },
+  "885925": {
+   "name": "MCU芯片",
+   "type": "concept"
+  },
+  "885926": {
+   "name": "牙科医疗",
+   "type": "concept"
+  },
+  "885927": {
+   "name": "CRO概念",
+   "type": "concept"
+  },
+  "885928": {
+   "name": "钠离子电池",
+   "type": "concept"
+  },
+  "885929": {
+   "name": "专精特新",
+   "type": "concept"
+  },
+  "885930": {
+   "name": "工业母机",
+   "type": "concept"
+  },
+  "885931": {
+   "name": "PVDF概念",
+   "type": "concept"
+  },
+  "885933": {
+   "name": "NFT概念",
+   "type": "concept"
+  },
+  "885934": {
+   "name": "元宇宙",
+   "type": "concept"
+  },
+  "885935": {
+   "name": "抽水蓄能",
+   "type": "concept"
+  },
+  "885936": {
+   "name": "绿色电力",
+   "type": "concept"
+  },
+  "885937": {
+   "name": "培育钻石",
+   "type": "concept"
+  },
+  "885938": {
+   "name": "换电概念",
+   "type": "concept"
+  },
+  "885939": {
+   "name": "海峡两岸",
+   "type": "concept"
+  },
+  "885940": {
+   "name": "WiFi 6",
+   "type": "concept"
+  },
+  "885942": {
+   "name": "数据安全",
+   "type": "concept"
+  },
+  "885943": {
+   "name": "EDR概念",
+   "type": "concept"
+  },
+  "885944": {
+   "name": "动力电池回收",
+   "type": "concept"
+  },
+  "885945": {
+   "name": "汽车芯片",
+   "type": "concept"
+  },
+  "885946": {
+   "name": "传感器",
+   "type": "concept"
+  },
+  "885947": {
+   "name": "DRG/DIP",
+   "type": "concept"
+  },
+  "885948": {
+   "name": "柔性直流输电",
+   "type": "concept"
+  },
+  "885950": {
+   "name": "虚拟数字人",
+   "type": "concept"
+  },
+  "885951": {
+   "name": "预制菜",
+   "type": "concept"
+  },
+  "885952": {
+   "name": "幽门螺杆菌概念",
+   "type": "concept"
+  },
+  "885953": {
+   "name": "电子纸",
+   "type": "concept"
+  },
+  "885954": {
+   "name": "新冠治疗",
+   "type": "concept"
+  },
+  "885955": {
+   "name": "重组蛋白",
+   "type": "concept"
+  },
+  "885956": {
+   "name": "智慧政务",
+   "type": "concept"
+  },
+  "885957": {
+   "name": "东数西算(算力)",
+   "type": "concept"
+  },
+  "885958": {
+   "name": "硅能源",
+   "type": "concept"
+  },
+  "885959": {
+   "name": "PCB概念",
+   "type": "concept"
+  },
+  "885960": {
+   "name": "民爆概念",
+   "type": "concept"
+  },
+  "885961": {
+   "name": "净水概念",
+   "type": "concept"
+  },
+  "885962": {
+   "name": "土壤修复",
+   "type": "concept"
+  },
+  "885963": {
+   "name": "智慧灯杆",
+   "type": "concept"
+  },
+  "885964": {
+   "name": "俄乌冲突概念",
+   "type": "concept"
+  },
+  "885965": {
+   "name": "中俄贸易概念",
+   "type": "concept"
+  },
+  "885966": {
+   "name": "跨境支付(CIPS)",
+   "type": "concept"
+  },
+  "885967": {
+   "name": "化肥",
+   "type": "concept"
+  },
+  "885968": {
+   "name": "托育服务",
+   "type": "concept"
+  },
+  "885969": {
+   "name": "金属镍",
+   "type": "concept"
+  },
+  "885970": {
+   "name": "金属锌",
+   "type": "concept"
+  },
+  "885971": {
+   "name": "金属铅",
+   "type": "concept"
+  },
+  "885972": {
+   "name": "金属回收",
+   "type": "concept"
+  },
+  "885973": {
+   "name": "金属铜",
+   "type": "concept"
+  },
+  "885974": {
+   "name": "两轮车",
+   "type": "concept"
+  },
+  "885975": {
+   "name": "电子身份证",
+   "type": "concept"
+  },
+  "885976": {
+   "name": "数字经济",
+   "type": "concept"
+  },
+  "885977": {
+   "name": "国资云",
+   "type": "concept"
+  },
+  "885978": {
+   "name": "低辐射玻璃(Low-E)",
+   "type": "concept"
+  },
+  "885980": {
+   "name": "华为鲲鹏",
+   "type": "concept"
+  },
+  "885981": {
+   "name": "家庭医生",
+   "type": "concept"
+  },
+  "885982": {
+   "name": "华为欧拉",
+   "type": "concept"
+  },
+  "885984": {
+   "name": "恒大概念",
+   "type": "concept"
+  },
+  "885985": {
+   "name": "毛发医疗",
+   "type": "concept"
+  },
+  "885986": {
+   "name": "碳交易",
+   "type": "concept"
+  },
+  "885987": {
+   "name": "MicroLED概念",
+   "type": "concept"
+  },
+  "885988": {
+   "name": "统一大市场",
+   "type": "concept"
+  },
+  "885989": {
+   "name": "肝炎概念",
+   "type": "concept"
+  },
+  "885990": {
+   "name": "露营经济",
+   "type": "concept"
+  },
+  "885991": {
+   "name": "新型城镇化",
+   "type": "concept"
+  },
+  "885992": {
+   "name": "噪声防治",
+   "type": "concept"
+  },
+  "885994": {
+   "name": "猴痘概念",
+   "type": "concept"
+  },
+  "885995": {
+   "name": "粮食概念",
+   "type": "concept"
+  },
+  "885996": {
+   "name": "超超临界发电",
+   "type": "concept"
+  },
+  "885997": {
+   "name": "比亚迪概念",
+   "type": "concept"
+  },
+  "885998": {
+   "name": "F5G概念",
+   "type": "concept"
+  },
+  "885999": {
+   "name": "汽车热管理",
+   "type": "concept"
+  },
+  "886000": {
+   "name": "一体化压铸",
+   "type": "concept"
+  },
+  "886001": {
+   "name": "高压快充",
+   "type": "concept"
+  },
+  "886002": {
+   "name": "机器视觉",
+   "type": "concept"
+  },
+  "886003": {
+   "name": "钒电池",
+   "type": "concept"
+  },
+  "886004": {
+   "name": "虚拟电厂",
+   "type": "concept"
+  },
+  "886005": {
+   "name": "生物质能发电",
+   "type": "concept"
+  },
+  "886006": {
+   "name": "钙钛矿电池",
+   "type": "concept"
+  },
+  "886007": {
+   "name": "TOPCON电池",
+   "type": "concept"
+  },
+  "886008": {
+   "name": "减速器",
+   "type": "concept"
+  },
+  "886009": {
+   "name": "先进封装",
+   "type": "concept"
+  },
+  "886010": {
+   "name": "空气能热泵",
+   "type": "concept"
+  },
+  "886011": {
+   "name": "光热发电",
+   "type": "concept"
+  },
+  "886012": {
+   "name": "宠物经济",
+   "type": "concept"
+  },
+  "886013": {
+   "name": "信创",
+   "type": "concept"
+  },
+  "886015": {
+   "name": "创新药",
+   "type": "concept"
+  },
+  "886016": {
+   "name": "供销社",
+   "type": "concept"
+  },
+  "886017": {
+   "name": "Web3.0",
+   "type": "concept"
+  },
+  "886018": {
+   "name": "高压氧舱",
+   "type": "concept"
+  },
+  "886019": {
+   "name": "AIGC概念",
+   "type": "concept"
+  },
+  "886020": {
+   "name": "PET铜箔",
+   "type": "concept"
+  },
+  "886021": {
+   "name": "国企改革",
+   "type": "concept"
+  },
+  "886023": {
+   "name": "数据确权",
+   "type": "concept"
+  },
+  "886024": {
+   "name": "抗病毒面料",
+   "type": "concept"
+  },
+  "886026": {
+   "name": "POE胶膜",
+   "type": "concept"
+  },
+  "886028": {
+   "name": "血氧仪",
+   "type": "concept"
+  },
+  "886030": {
+   "name": "成飞概念",
+   "type": "concept"
+  },
+  "886031": {
+   "name": "ChatGPT概念",
+   "type": "concept"
+  },
+  "886032": {
+   "name": "固态电池",
+   "type": "concept"
+  },
+  "886033": {
+   "name": "共封装光学(CPO)",
+   "type": "concept"
+  },
+  "886034": {
+   "name": "数字水印",
+   "type": "concept"
+  },
+  "886035": {
+   "name": "毫米波雷达",
+   "type": "concept"
+  },
+  "886036": {
+   "name": "时空大数据",
+   "type": "concept"
+  },
+  "886037": {
+   "name": "6G概念",
+   "type": "concept"
+  },
+  "886038": {
+   "name": "超导概念",
+   "type": "concept"
+  },
+  "886039": {
+   "name": "ERP概念",
+   "type": "concept"
+  },
+  "886040": {
+   "name": "MLOps概念",
+   "type": "concept"
+  },
+  "886041": {
+   "name": "数据要素",
+   "type": "concept"
+  },
+  "886042": {
+   "name": "存储芯片",
+   "type": "concept"
+  },
+  "886043": {
+   "name": "太赫兹",
+   "type": "concept"
+  },
+  "886044": {
+   "name": "液冷服务器",
+   "type": "concept"
+  },
+  "886045": {
+   "name": "同花顺中特估100",
+   "type": "concept"
+  },
+  "886046": {
+   "name": "MR(混合现实)",
+   "type": "concept"
+  },
+  "886047": {
+   "name": "脑机接口",
+   "type": "concept"
+  },
+  "886048": {
+   "name": "英伟达概念",
+   "type": "concept"
+  },
+  "886049": {
+   "name": "空间计算",
+   "type": "concept"
+  },
+  "886050": {
+   "name": "算力租赁",
+   "type": "concept"
+  },
+  "886051": {
+   "name": "减肥药",
+   "type": "concept"
+  },
+  "886052": {
+   "name": "核污染防治",
+   "type": "concept"
+  },
+  "886053": {
+   "name": "BC电池",
+   "type": "concept"
+  },
+  "886054": {
+   "name": "光刻机",
+   "type": "concept"
+  },
+  "886055": {
+   "name": "星闪概念",
+   "type": "concept"
+  },
+  "886056": {
+   "name": "阿尔茨海默概念",
+   "type": "concept"
+  },
+  "886057": {
+   "name": "新型工业化",
+   "type": "concept"
+  },
+  "886058": {
+   "name": "华为昇腾",
+   "type": "concept"
+  },
+  "886059": {
+   "name": "智能座舱",
+   "type": "concept"
+  },
+  "886060": {
+   "name": "短剧游戏",
+   "type": "concept"
+  },
+  "886061": {
+   "name": "长安汽车概念",
+   "type": "concept"
+  },
+  "886062": {
+   "name": "多模态AI",
+   "type": "concept"
+  },
+  "886063": {
+   "name": "PEEK材料",
+   "type": "concept"
+  },
+  "886064": {
+   "name": "小米汽车",
+   "type": "concept"
+  },
+  "886065": {
+   "name": "可控核聚变",
+   "type": "concept"
+  },
+  "886066": {
+   "name": "飞行汽车(eVTOL)",
+   "type": "concept"
+  },
+  "886067": {
+   "name": "低空经济",
+   "type": "concept"
+  },
+  "886068": {
+   "name": "AI视频",
+   "type": "concept"
+  },
+  "886069": {
+   "name": "人形机器人",
+   "type": "concept"
+  },
+  "886070": {
+   "name": "AI手机",
+   "type": "concept"
+  },
+  "886071": {
+   "name": "AI PC",
+   "type": "concept"
+  },
+  "886072": {
+   "name": "高股息精选",
+   "type": "concept"
+  },
+  "886073": {
+   "name": "铜缆高速连接",
+   "type": "concept"
+  },
+  "886074": {
+   "name": "AI语料",
+   "type": "concept"
+  },
+  "886075": {
+   "name": "同花顺出海50",
+   "type": "concept"
+  },
+  "886076": {
+   "name": "军工信息化",
+   "type": "concept"
+  },
+  "886077": {
+   "name": "合成生物",
+   "type": "concept"
+  },
+  "886078": {
+   "name": "商业航天",
+   "type": "concept"
+  },
+  "886080": {
+   "name": "财税数字化",
+   "type": "concept"
+  },
+  "886081": {
+   "name": "维生素",
+   "type": "concept"
+  },
+  "886082": {
+   "name": "同花顺果指数",
+   "type": "concept"
+  },
+  "886083": {
+   "name": "巴黎奥运会概念",
+   "type": "concept"
+  },
+  "886084": {
+   "name": "光纤概念",
+   "type": "concept"
+  },
+  "886085": {
+   "name": "AI眼镜",
+   "type": "concept"
+  },
+  "886086": {
+   "name": "西部大开发",
+   "type": "concept"
+  },
+  "886087": {
+   "name": "房屋检测",
+   "type": "concept"
+  },
+  "886089": {
+   "name": "回购增持再贷款概念",
+   "type": "concept"
+  },
+  "886090": {
+   "name": "智谱AI",
+   "type": "concept"
+  },
+  "886091": {
+   "name": "华为手机",
+   "type": "concept"
+  },
+  "886093": {
+   "name": "华为数字能源",
+   "type": "concept"
+  },
+  "886094": {
+   "name": "华为盘古",
+   "type": "concept"
+  },
+  "886095": {
+   "name": "IP经济(谷子经济)",
+   "type": "concept"
+  },
+  "886096": {
+   "name": "同花顺新质50",
+   "type": "concept"
+  },
+  "886097": {
+   "name": "2024年报预增",
+   "type": "concept"
+  },
+  "886098": {
+   "name": "小红书概念",
+   "type": "concept"
+  },
+  "886099": {
+   "name": "AI智能体",
+   "type": "concept"
+  },
+  "886100": {
+   "name": "DeepSeek概念",
+   "type": "concept"
+  },
+  "886101": {
+   "name": "兵装重组概念",
+   "type": "concept"
+  },
+  "886102": {
+   "name": "中国AI 50",
+   "type": "concept"
+  },
+  "886104": {
+   "name": "2025中报预增",
+   "type": "concept"
+  },
+  "886105": {
+   "name": "雅下水电概念",
+   "type": "concept"
+  },
+  "886106": {
+   "name": "2025三季报预增",
+   "type": "concept"
+  },
+  "886107": {
+   "name": "2025年报预增",
+   "type": "concept"
+  },
+  "886108": {
+   "name": "AI应用",
+   "type": "concept"
+  },
+  "886109": {
+   "name": "2026一季报预增",
+   "type": "concept"
+  },
+  "886110": {
+   "name": "2026中报预增",
+   "type": "concept"
+  },
+  "886111": {
+   "name": "玻璃基板",
+   "type": "concept"
+  },
+  "886112": {
+   "name": "MLCC概念",
+   "type": "concept"
+  }
+ }
+}
