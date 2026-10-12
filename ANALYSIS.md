@@ -150,7 +150,8 @@ Hevo.SelfStock、Hevo.Core（HevoHelper），反编译产物在 `ths_cli/decompi
 
 - 已真机联调通过（2026-10-12）：滑块定位（网格读图法：给背景图叠 10px 网格，
   x ≈ 缺口主体左缘 − 4，y 固定为 inity，容差约 ±5）→ 发短信 → verify →
-  sync 拉到云自选 18 只（含指数/ETF）。push 已实现未实测（会改动云端数据）。
+  sync 拉到云自选 18 只（含指数/ETF）。push 已于 2026-10-12 实测通过（同名单推送 retcode=0「修改自选股成功」，推送后 sync 复核云端仍为 18 只一致）；实测中发现并修复：指数代码 1A0001 使 normalize 失败导致 push 中断（改为快照 old_id 优先 + 静默试探）。
+- **2026-10-12 agent 向优化**：新增 indicators（MA/MACD/RSI/KDJ/BOLL 本地计算）、doctor（通道健康检查，实测当场抓到网关 502 瞬时故障）、commands（能力清单）；K 线标定为前复权并在输出标注 adjust=forward（比亚迪 2025-07-29 送转除权日前后价格连续验证）；f10 --deep 补同比 yoy_pct 与 --all 全量科目；http 层对 GET 增加 502/503/网络错误重试（POST 不重试防重复提交）；watchlist list 改并发（18 只约 20s→3.4s）；quote 支持指数代码直查（1A0001）。
   经验：短信验证码有效期很短（约 3–5 分钟，首个码 4 分钟即过期），拿到立刻 verify；
   登录字段加密用标准 Base64（HexinBase64Encode 经实机调用客户端 DLL 验证），
   自定义字母表仅自选接口使用，两者勿混。

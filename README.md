@@ -12,12 +12,14 @@ Agent 读 `SKILL.md` 学会调用 `ths` 命令，即可查询 A 股行情、K �
 | 命令 | 说明 |
 |---|---|
 | `ths quote <代码...>` | 实时行情快照（现价/涨跌幅/量额/换手/涨跌停/市值 + 买一/卖一盘口与委比） |
-| `ths kline <代码> --period day\|week\|month\|60m\|30m\|15m\|5m` | K 线 |
+| `ths kline <代码> --period day\|week\|month\|60m\|30m\|15m\|5m` | K 线（前复权） |
+| `ths indicators <代码>` | 技术指标 MA/MACD/RSI/KDJ/BOLL（本地计算） |
+| `ths doctor` / `ths commands` | 通道健康检查 / 机器可读能力清单 |
 | `ths intraday <代码>` | 当日分时（1 分钟） |
 | `ths search <关键词>` | 按名称/代码找股 |
 | `ths screen "<自然语言>"` | 问财 NLP 选股，如「市盈率低于 10 的银行股」 |
 | `ths news --source cjzx\|hk\|hgt\|whfx\|global` | 财经资讯（RSS） |
-| `ths f10 <代码> [--deep]` | F10 摘要；`--deep` 附财报三表核心指标（近 4 期）+ 十大股东 |
+| `ths f10 <代码> [--deep] [--all]` | F10 摘要；`--deep` 附财报三表核心指标（近 4 期，含同比）+ 十大股东，`--all` 附全量科目 |
 | `ths rank --by change\|fall\|amount\|turnover\|volume\|fund\|fundout` | 全市场排行（资金流为名单版，无金额） |
 | `ths lhb` | 龙虎榜名单（最近交易日，无营业部明细） |
 | `ths sector list\|quote\|stocks` | 板块：95 行业 + 431 概念（注册表 `sectors.json` 随仓库附带） |

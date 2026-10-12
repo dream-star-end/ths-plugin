@@ -14,13 +14,15 @@ description: 同花顺行情 CLI：当用户问 A 股行情、K 线、分时、�
 所有命令默认输出 JSON；错误时 stderr 输出 `{"error": ...}` 且退出码 1。
 
 - 实时行情：`ths quote 600519 000001`（现价、涨跌幅、量额、换手、涨跌停、市值）
-- K 线：`ths kline 600519 --period day|week|month|60m|30m|15m|5m --count 30`
+- K 线：`ths kline 600519 --period day|week|month|60m|30m|15m|5m --count 30`（前复权，输出 adjust=forward）
+- 技术指标：`ths indicators 600519 [--count 5]`（MA/MACD/RSI/KDJ/BOLL，本地计算，优先用它而不是自己拿 K 线手算）
 - 分时：`ths intraday 600519`
 - 按名称找股：`ths search 茅台`
 - 自然语言选股：`ths screen "今日涨幅最大的股票" --limit 20`
 - 资讯：`ths news --source cjzx|hk|hgt|whfx|global --limit 10`
 - F10 摘要：`ths f10 600519`（公司资料 + 财务诊断评分/点评）
-- 深度 F10：`ths f10 600519 --deep`（财报三表核心指标近 4 期 + 十大流通/十大股东）
+- 深度 F10：`ths f10 600519 --deep [--all]`（财报三表核心指标近 4 期含同比 yoy_pct + 十大流通/十大股东；--all 附全量科目）
+- 自检：`ths doctor`（各通道健康检查，拿不准接口是否正常时先跑它）；`ths commands`（机器可读能力清单）
 - 全市场排行：`ths rank --by change|fall|amount|turnover|volume|fund|fundout --limit 20`（问财 NLP + 行情重排的近似榜单，引用时说明来源；fund/fundout 是主力资金净流入/流出名单，只有名次无金额）
 - 龙虎榜名单：`ths lhb --limit 30`（最近交易日；上榜原因/营业部明细拿不到，不要编造）
 - 盘口：`ths quote` 输出含 `order_book`（买一/卖一价量 + 委比 imbalance_pct）；只有一档，五档/逐笔没有，不要假装有
