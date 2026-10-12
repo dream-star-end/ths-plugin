@@ -95,14 +95,56 @@ def http_raw(url, data=None, ctype=None):
     return _urlopen_retry(req)
 
 
-def fail(msg):
-    print(json.dumps({"error": msg}, ensure_ascii=False), file=sys.stderr)
+def fail(msg, code="ERROR"):
+    """统一错误出口：stderr 输出 {"error": msg, "code": code} 并以退出码 1 结束，
+    code 供 agent 分支处理（INVALID_CODE/NOT_FOUND/UPSTREAM/NETWORK/AUTH 等）。"""
+    print(json.dumps({"error": msg, "code": code}, ensure_ascii=False),
+          file=sys.stderr)
     sys.exit(1)
+
+
+# ---------------------------------------------------------------- tiny cache
+
+CACHE_PATH = os.path.join(os.path.expanduser("~"), ".ths_cache.json")
+
+
+def _cache_get(key, ttl):
+    """短期文件缓存：降低 agent 一轮分析内的重复请求（行情 20s、K 线 30min、
+    财报 6h）。THS_NO_CACHE=1 可禁用。缓存损坏时静默回退为未命中。"""
+    if os.environ.get("THS_NO_CACHE"):
+        return None
+    try:
+        import time
+        with open(CACHE_PATH, encoding="utf-8") as f:
+            ent = json.load(f).get(key)
+        if ent and time.time() - ent["ts"] < ttl:
+            return ent["data"]
+    except Exception:
+        pass
+    return None
+
+
+def _cache_set(key, data):
+    if os.environ.get("THS_NO_CACHE"):
+        return
+    try:
+        import time
+        store = {}
+        if os.path.exists(CACHE_PATH):
+            with open(CACHE_PATH, encoding="utf-8") as f:
+                store = json.load(f)
+        now = time.time()
+        store = {k: v for k, v in store.items() if now - v["ts"] < 86400}
+        store[key] = {"ts": now, "data": data}
+        with open(CACHE_PATH, "w", encoding="utf-8") as f:
+            json.dump(store, f, ensure_ascii=False)
+    except Exception:
+        pass
 
 
 # ---------------------------------------------------------------- code utils
 
-MARKET_ID = {"17": "SH", "33": "SZ"}
+MARKET_ID = {"17": "SH", "33": "SZ", "151": "BJ"}
 
 
 def _normalize_code(raw):
@@ -122,7 +164,9 @@ def _normalize_code(raw):
     elif tag == "BJ":
         market = "151"  # 北交所，v6 网关同样走 hs_ 前缀时可回退
     if market is None:  # 按代码段推断
-        if code.startswith(("6", "9")):
+        if code.startswith("920"):
+            market = "151"  # 北交所（920xxx；网关同样走 hs_ 前缀，实测 920185 贝特瑞可查）
+        elif code.startswith(("6", "9")):
             market = "17"
         elif code.startswith(("0", "2", "3")):
             market = "33"
@@ -134,7 +178,7 @@ def normalize_code(raw):
     try:
         return _normalize_code(raw)
     except ValueError as e:
-        fail(str(e))
+        fail(str(e), code="INVALID_CODE")
 
 
 def v6_symbol(code):
@@ -167,6 +211,9 @@ REALHEAD_FIELDS = {
 
 def fetch_quote(code):
     symbol = v6_symbol(code)
+    hit = _cache_get(f"quote:{code}", ttl=20)
+    if hit is not None:
+        return hit["out"], hit["items"]
     data = http_jsonp(
         f"https://d.10jqka.com.cn/v6/realhead/{symbol}/last.js",
         referer=f"https://stockpage.10jqka.com.cn/{code}/",
@@ -203,6 +250,7 @@ def fetch_quote(code):
         if bv and av:
             book["imbalance_pct"] = round((bv - av) / (bv + av) * 100, 2)
         out["order_book"] = book
+    _cache_set(f"quote:{code}", {"out": out, "items": items})
     return out, items
 
 
@@ -218,6 +266,16 @@ def cmd_quote(args):
                 code = str(raw).strip().upper()
             else:
                 fail(f"无法识别的股票代码: {raw}")
+        if code.startswith(("881", "885")) and \
+                code in load_sectors()["sectors"]:
+            # 板块代码直查：走板块指数行情（bk_ 网关）
+            info = load_sectors()["sectors"][code]
+            q = fetch_block_quote(code)
+            q.pop("raw_items", None)
+            q.update({"name": info["name"], "type": info["type"],
+                      "target_type": "sector"})
+            results.append(q)
+            continue
         q, items = fetch_quote(code)
         if args.raw:
             q["raw_items"] = items
@@ -233,10 +291,16 @@ PERIODS = {"day": "01", "week": "11", "month": "21",
            "60m": "41", "30m": "51", "15m": "61", "5m": "71", "1m": "81"}
 
 
-def fetch_kline(code, period, count):
+def fetch_kline(code, period, count, symbol=None):
+    symbol = symbol or v6_symbol(code)
+    ttl = 1800 if period in ("day", "week", "month") else 120
+    ckey = f"kline:{symbol}:{period}:{count}"
+    hit = _cache_get(ckey, ttl=ttl)
+    if hit is not None:
+        return hit
     p = PERIODS[period]
     data = http_jsonp(
-        f"https://d.10jqka.com.cn/v6/line/{v6_symbol(code)}/{p}/last{count}.js",
+        f"https://d.10jqka.com.cn/v6/line/{symbol}/{p}/last{count}.js",
         referer=f"https://stockpage.10jqka.com.cn/{code}/",
     )
     rows = []
@@ -253,23 +317,54 @@ def fetch_kline(code, period, count):
             "turnover_pct": float(f[7]) if len(f) > 7 and f[7] else None,
         })
     # 复权口径：已用比亚迪(002594)验证——2025-07-29 送转除权日(10送8转12)
-    # 前后收盘价连续无 1/3 跳空，网关日线为前复权。
-    return {"code": code, "name": data.get("name", ""),
-            "period": period, "adjust": "forward", "rows": rows[-count:]}
+    # 前后收盘价连续无 1/3 跳空，网关个股日线为前复权（板块指数无复权概念）。
+    out = {"code": code, "name": data.get("name", ""), "symbol": symbol,
+           "period": period,
+           "adjust": "forward" if symbol.startswith("hs_") else None,
+           "rows": rows[-count:]}
+    _cache_set(ckey, out)
+    return out
+
+
+def _resolve_kline_target(raw):
+    """K线/指标的目标解析：股票代码、指数代码、板块代码（881xxx/885xxx）、
+    板块名、bk_881101 写法 → (展示代码, v6 符号, 名称提示, 是否板块)。"""
+    s = str(raw).strip()
+    if s.lower().startswith("bk_"):
+        c = s[3:]
+        info = load_sectors()["sectors"].get(c, {})
+        return c, f"bk_{c}", info.get("name", ""), True
+    try:
+        code, _ = _normalize_code(s)
+    except ValueError:
+        code = None
+    if code:
+        if code.startswith(("881", "885")):
+            info = load_sectors()["sectors"].get(code)
+            if info:
+                return code, f"bk_{code}", info["name"], True
+        return code, v6_symbol(code), "", False
+    if re.fullmatch(r"[0-9A-Z]{6}", s.upper()):
+        return s.upper(), v6_symbol(s.upper()), "", False
+    code, name, _t = resolve_sector(s, load_sectors())
+    return code, f"bk_{code}", name, True
 
 
 def cmd_kline(args):
-    code, _ = normalize_code(args.code)
-    emit(fetch_kline(code, args.period, args.count), args)
+    code, symbol, hint, _is_sector = _resolve_kline_target(args.code)
+    k = fetch_kline(code, args.period, args.count, symbol=symbol)
+    if not k["name"] and hint:
+        k["name"] = hint
+    emit(k, args)
 
 
 def cmd_intraday(args):
-    code, _ = normalize_code(args.code)
+    code, symbol, hint, is_sector = _resolve_kline_target(args.code)
     data = http_jsonp(
-        f"https://d.10jqka.com.cn/v6/time/{v6_symbol(code)}/last.js",
+        f"https://d.10jqka.com.cn/v6/time/{symbol}/last.js",
         referer=f"https://stockpage.10jqka.com.cn/{code}/",
     )
-    node = data.get(v6_symbol(code), {})
+    node = data.get(symbol, {})
 
     def fnum(s):
         try:
@@ -287,7 +382,8 @@ def cmd_intraday(args):
             points.append({"time": f[0], "price": fnum(f[1]),
                            "amount": fnum(f[2]), "avg": fnum(f[3]),
                            "volume": fnum(f[4])})
-    emit({"code": code, "name": node.get("name", ""),
+    emit({"code": code, "name": node.get("name", "") or hint,
+          "target_type": "sector" if is_sector else "stock",
           "prev_close": float(node["pre"]) if node.get("pre") else None,
           "date": node.get("date", ""), "points": points}, args)
 
@@ -323,13 +419,17 @@ def cmd_search(args):
 
 def cmd_screen(args):
     chunks, codes = nlp_query(args.condition)
-    results = []
-    for code, mid in codes[: args.limit]:
+    from concurrent.futures import ThreadPoolExecutor
+
+    def one(cm):
+        code, _mid = cm
         try:
             q, _ = fetch_quote(code)
-            results.append(q)
+            return q
         except Exception as e:  # 单只失败不拖垮整批
-            results.append({"code": code, "error": str(e)})
+            return {"code": code, "error": str(e)}
+    with ThreadPoolExecutor(max_workers=12) as ex:
+        results = list(ex.map(one, codes[:args.limit]))
     emit({"condition": args.condition, "parsed": chunks,
           "total": len(codes), "results": results}, args,
          cols=["code", "name", "price", "change_pct", "amount"])
@@ -450,6 +550,9 @@ def _num(v):
 def fetch_statement(code, kind, periods_n=4):
     """财报三表：basic.10jqka.com.cn/api/stock/finance/{code}_{kind}.json
     外层 JSON 的 flashData 是内嵌 JSON 字符串：title=科目行，report=按期矩阵。"""
+    hit = _cache_get(f"stmt:{code}:{kind}:{periods_n}", ttl=21600)
+    if hit is not None:
+        return hit
     text = http_get(f"https://basic.10jqka.com.cn/api/stock/finance/{code}_{kind}.json")
     inner = json.loads(json.loads(text)["flashData"])
     titles, report = inner["title"], inner["report"]
@@ -469,7 +572,9 @@ def fetch_statement(code, kind, periods_n=4):
                                 for j in range(len(periods)) if j < len(vals)},
                      "yoy_pct": {periods[j]: _num(yoy[j])
                                  for j in range(len(periods)) if j < len(yoy)}})
-    return {"periods": periods, "rows": rows}
+    out = {"periods": periods, "rows": rows}
+    _cache_set(f"stmt:{code}:{kind}:{periods_n}", out)
+    return out
 
 
 def _td_texts(tr_html):
@@ -483,6 +588,9 @@ def _td_texts(tr_html):
 
 def fetch_holders(code):
     """十大股东：basic F10 holder.html 服务端渲染表格（取最新一期）。"""
+    hit = _cache_get(f"holders:{code}", ttl=21600)
+    if hit is not None:
+        return hit
     raw = http_get(f"https://basic.10jqka.com.cn/{code}/holder.html", encoding="gbk")
     out = {}
     for key, anchor in (("top10_float", "前十大流通股东累计持有"),
@@ -507,6 +615,7 @@ def fetch_holders(code):
                 break
         out[key] = {"period": max(dates) if dates else None,
                     "summary": summary, "holders": holders}
+    _cache_set(f"holders:{code}", out)
     return out
 
 
@@ -644,8 +753,10 @@ def resolve_sector(query, cache):
         c, v = fuzzy[0]
         return c, v["name"], v["type"]
     if len(fuzzy) > 1:
-        fail(f"板块名不唯一，请用代码: {[(c, v['name']) for c, v in fuzzy[:10]]}")
-    fail(f"板块注册表里找不到: {q}（可先 ths sector list --refresh 刷新）")
+        fail(f"板块名不唯一，请用代码: {[(c, v['name']) for c, v in fuzzy[:10]]}",
+             code="AMBIGUOUS")
+    fail(f"板块注册表里找不到: {q}（可先 ths sector list --refresh 刷新）",
+         code="NOT_FOUND")
 
 
 def fetch_block_quote(code):
@@ -687,6 +798,36 @@ def cmd_sector(args):
         emit({"sector": {"code": code, "name": name, "type": typ},
               "total_from_nlp": len(codes), "results": results[:args.limit]},
              args, cols=["code", "name", "price", "change_pct", "amount"])
+
+
+# ---------------------------------------------------------------- events
+
+def cmd_events(args):
+    """公司大事·近期重要事件：basic F10 event.html 的「近期重要事件」区
+    （股东大会/业绩披露/股票回购/分红方案/限售解禁等，页面服务端渲染）。"""
+    code, _ = normalize_code(args.code)
+    text = _page_text(f"https://basic.10jqka.com.cn/{code}/event.html")
+    # 页面导航里也有「近期重要事件」字样，真正的区块标题后紧跟日期
+    m_sec = re.search(r"近期重要事件\s*(?=\d{4}-\d{2}-\d{2})", text)
+    idx = m_sec.start() if m_sec else text.find("近期重要事件")
+    seg = text[idx:idx + 9000] if idx >= 0 else text[:9000]
+    pat = re.compile(
+        r"(\d{4}-\d{2}-\d{2})\s*([^：:\s]{2,10})：\s*"
+        r"(.+?)(?=\s*\d{4}-\d{2}-\d{2}\s*[^：:]{2,10}：|详细内容|$)")
+    import html as _html
+    events = []
+    for m in pat.finditer(seg):
+        body = _html.unescape(re.sub(r"\s+", " ", m.group(3))).strip()
+        body = re.split(r"(详细内容|展开|收起)", body)[0].strip(" ▼▲·")
+        body = re.sub(r"^(更多>>|详情>>|更多|详情)\s*", "", body)
+        if body:
+            events.append({"date": m.group(1), "category": m.group(2),
+                           "text": body[:220]})
+        if len(events) >= args.limit:
+            break
+    emit({"code": code, "events": events,
+          "source": "basic.10jqka.com.cn F10 公司大事·近期重要事件"}, args,
+         cols=["date", "category", "text"])
 
 
 # ---------------------------------------------------------------- indicators / doctor / manifest
@@ -757,14 +898,16 @@ def compute_indicators(rows):
 
 
 def cmd_indicators(args):
-    code, _ = normalize_code(args.code)
-    k = fetch_kline(code, args.period, 300)
+    code, symbol, hint, is_sector = _resolve_kline_target(args.code)
+    k = fetch_kline(code, args.period, 300, symbol=symbol)
     rows = k["rows"]
     if len(rows) < 30:
         fail(f"K 线数据不足（{len(rows)} 根），无法计算指标")
     series = compute_indicators(rows)
     tail = series[-args.count:]
-    emit({"code": code, "name": k["name"], "period": args.period,
+    emit({"code": code, "name": k["name"] or hint,
+          "target_type": "sector" if is_sector else "stock",
+          "period": args.period,
           "adjust": k.get("adjust"), "bars_used": len(rows),
           "as_of": rows[-1]["date"], "latest": tail[-1], "series": tail},
          args)
@@ -874,6 +1017,8 @@ COMMANDS_MANIFEST = [
      "desc": "本地自选（list 带行情）；sync 云→本地合并、push 本地→云（需登录）"},
     {"name": "login", "usage": "ths login send-code --phone N [--captcha-x X] | verify --code C | status | logout",
      "desc": "同花顺短信登录（滑块验证码需看图定位；凭据存 ~/.ths_auth.json，约30天）"},
+    {"name": "events", "usage": "ths events <code> [--limit N]",
+     "desc": "公司大事·近期重要事件（股东大会/业绩披露/回购/分红/解禁等，来自 F10 event 页）"},
     {"name": "doctor", "usage": "ths doctor",
      "desc": "通道健康检查（行情/K线/问财/资讯/F10/板块/登录），有关键项失败时退出码 1"},
     {"name": "commands", "usage": "ths commands", "desc": "本能力清单（机器可读）"},
@@ -1330,11 +1475,33 @@ def cmd_watchlist(args):
 
 # ---------------------------------------------------------------- output
 
+_LIST_KEYS = ("results", "watchlist", "items", "series", "sectors", "checks",
+              "events")
+
+
+def _pick_fields(obj, fields):
+    """--fields 字段裁剪：顶层 dict 只保留所选键；结果列表容器
+    （results/watchlist/...）保留并逐行裁剪，元信息键随之丢弃。"""
+    if isinstance(obj, dict):
+        out = {}
+        for k, v in obj.items():
+            if k in _LIST_KEYS and isinstance(v, list):
+                out[k] = [{kk: vv for kk, vv in row.items() if kk in fields}
+                          if isinstance(row, dict) else row for row in v]
+            elif k in fields:
+                out[k] = v
+        return out
+    if isinstance(obj, list):
+        return [{k: v for k, v in row.items() if k in fields}
+                if isinstance(row, dict) else row for row in obj]
+    return obj
+
+
 def emit(data, args, cols=None):
     if getattr(args, "table", False):
         rows = data
         if isinstance(data, dict):
-            for k in ("results", "items", "watchlist"):
+            for k in ("results", "items", "watchlist", "events"):
                 if k in data:
                     meta = {kk: vv for kk, vv in data.items() if kk != k}
                     if meta:
@@ -1350,13 +1517,20 @@ def emit(data, args, cols=None):
         for r in rows:
             print("\t".join("" if r.get(c) is None else str(r.get(c)) for c in cols))
     else:
-        print(json.dumps(data, ensure_ascii=False, indent=2))
+        fields = getattr(args, "fields", None)
+        if fields:
+            data = _pick_fields(data, set(fields))
+        if getattr(args, "compact", False):
+            print(json.dumps(data, ensure_ascii=False, separators=(",", ":")))
+        else:
+            print(json.dumps(data, ensure_ascii=False, indent=2))
 
 
 # ---------------------------------------------------------------- main
 
 def main():
     p = argparse.ArgumentParser(prog="ths", description="同花顺 CLI（agent 友好，默认 JSON 输出）")
+    p.add_argument("--version", action="version", version="ths 1.3.0")
     p.add_argument("--table", action="store_true", help="表格输出代替 JSON")
     sub = p.add_subparsers(dest="cmd", required=True)
 
@@ -1419,6 +1593,11 @@ def main():
     sp.add_argument("--limit", type=int, default=100)
     sp.set_defaults(func=cmd_lhb)
 
+    sp = sub.add_parser("events", help="公司大事·近期重要事件（股东大会/业绩披露/回购/分红/解禁）")
+    sp.add_argument("code")
+    sp.add_argument("--limit", type=int, default=20)
+    sp.set_defaults(func=cmd_events)
+
     sp = sub.add_parser("sector", help="板块：list 列表 / quote 板块指数行情 / stocks 成分股")
     sp.add_argument("action", choices=["list", "quote", "stocks"])
     sp.add_argument("target", nargs="?", help="板块名或 6 位板块代码（quote/stocks 用）")
@@ -1446,10 +1625,29 @@ def main():
     sp.set_defaults(func=cmd_login)
 
     argv = sys.argv[1:]
-    table_flag = "--table" in argv  # --table 允许出现在任意位置
-    argv = [a for a in argv if a != "--table"]
-    args = p.parse_args(argv)
+    # --table / --compact / --fields 允许出现在任意位置，先行提取
+    table_flag = "--table" in argv
+    compact_flag = "--compact" in argv
+    fields = None
+    cleaned = []
+    i = 0
+    while i < len(argv):
+        a = argv[i]
+        if a in ("--table", "--compact"):
+            i += 1
+        elif a == "--fields" and i + 1 < len(argv):
+            fields = [x.strip() for x in argv[i + 1].split(",") if x.strip()]
+            i += 2
+        elif a.startswith("--fields="):
+            fields = [x.strip() for x in a[9:].split(",") if x.strip()]
+            i += 1
+        else:
+            cleaned.append(a)
+            i += 1
+    args = p.parse_args(cleaned)
     args.table = table_flag
+    args.compact = compact_flag
+    args.fields = fields
     if args.cmd == "watchlist" and args.action in ("add", "remove") and not args.code:
         fail("watchlist add/remove 需要股票代码")
     try:
@@ -1457,7 +1655,15 @@ def main():
     except BrokenPipeError:
         pass
     except Exception as e:
-        fail(str(e))
+        code = "INTERNAL"
+        if isinstance(e, urllib.error.HTTPError):
+            code = {404: "NOT_FOUND", 429: "RATE_LIMIT"}.get(
+                e.code, "UPSTREAM" if e.code >= 500 else "HTTP")
+        elif isinstance(e, urllib.error.URLError):
+            code = "NETWORK"
+        elif isinstance(e, RuntimeError):
+            code = "UPSTREAM"
+        fail(str(e), code=code)
 
 
 if __name__ == "__main__":

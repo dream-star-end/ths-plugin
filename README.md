@@ -15,6 +15,7 @@ Agent 读 `SKILL.md` 学会调用 `ths` 命令，即可查询 A 股行情、K �
 | `ths kline <代码> --period day\|week\|month\|60m\|30m\|15m\|5m` | K 线（前复权） |
 | `ths indicators <代码>` | 技术指标 MA/MACD/RSI/KDJ/BOLL（本地计算） |
 | `ths doctor` / `ths commands` | 通道健康检查 / 机器可读能力清单 |
+| `ths events <代码>` | F10 公司大事·近期重要事件（披露/股东大会/业绩/回购/分红/解禁） |
 | `ths intraday <代码>` | 当日分时（1 分钟） |
 | `ths search <关键词>` | 按名称/代码找股 |
 | `ths screen "<自然语言>"` | 问财 NLP 选股，如「市盈率低于 10 的银行股」 |
@@ -26,7 +27,7 @@ Agent 读 `SKILL.md` 学会调用 `ths` 命令，即可查询 A 股行情、K �
 | `ths watchlist list\|add\|remove` / `sync` / `push` | 本地自选 / 云自选同步（需登录） |
 | `ths login send-code\|verify\|status\|logout` | 短信验证码登录（滑块验证码由 Agent 看图定位） |
 
-所有命令默认 JSON 输出，任意位置加 `--table` 可输出表格。
+所有命令默认 JSON 输出；全局选项（任意位置）：`--table` 表格、`--compact` 单行 JSON、`--fields a,b` 字段裁剪。带短期文件缓存（行情 20s、K 线 2–30 分钟、财报 6h，`THS_NO_CACHE=1` 禁用），错误输出带 `code` 字段便于程序分支。K 线/分时/指标的目标可为股票代码、指数代码、板块代码或板块名；北交所 920xxx 已实测可查。单元测试：`python3 -m unittest discover -s tests`。
 
 ## 安装
 

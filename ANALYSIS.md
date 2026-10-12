@@ -157,3 +157,20 @@ Hevo.SelfStock、Hevo.Core（HevoHelper），反编译产物在 `ths_cli/decompi
   自定义字母表仅自选接口使用，两者勿混。
 - 凭据存 `~/.ths_auth.json`（0600）；登录流程状态存 `~/.ths_login_flow.json`（0600，
   含滑块 ticket 与公钥，verify 后删除）。
+
+## 9. 追加（2026-10-12）：v1.3.0 agent 向优化
+
+- **events**：basic F10 event.html「近期重要事件」区块（标题后紧跟日期者为真区块，
+  导航里有同名菜单需避开），正则抽取日期/类别/正文，HTML 实体反转义。
+- **板块/指数进 K 线工具链**：kline/intraday/indicators 共用目标解析
+  （股票/指数 1A0001/板块代码 881·885 前缀与注册表命中/板块名/bk_ 前缀）；
+  quote 对 881/885 代码直转板块行情。
+- **北交所实测**：hs_920185（贝特瑞）行情与 F10 均可查，bj_ 前缀 404；
+  normalize 将 920xxx 归 BJ(marketid 151)。注意问财 NLP 不返回北交所 codes，
+  search 可能找不到北交所股票，但按代码可查。
+- **688262 复核**：行情已正常；其 quote 价与日线收盘价的差异源于科创板
+  盘后固定价格交易（update_time 15:30），非数据错误。
+- **输出/错误/缓存**：--compact/--fields 全局选项；fail 与主入口异常统一
+  输出 code；文件缓存 ~/.ths_cache.json（quote 20s、K 线 2–30min、财报 6h）。
+- **测试**：插件仓 tests/test_indicators.py（合成数据验证 MA/MACD/RSI/KDJ/BOLL
+  与代码规范化，5 用例）。

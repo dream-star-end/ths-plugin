@@ -27,6 +27,9 @@ description: 同花顺行情 CLI：当用户问 A 股行情、K 线、分时、�
 - 龙虎榜名单：`ths lhb --limit 30`（最近交易日；上榜原因/营业部明细拿不到，不要编造）
 - 盘口：`ths quote` 输出含 `order_book`（买一/卖一价量 + 委比 imbalance_pct）；只有一档，五档/逐笔没有，不要假装有
 - 板块：`ths sector list [--type industry|concept]`、`ths sector quote 半导体`（板块指数行情）、`ths sector stocks 半导体 --limit 30`（成分股按涨幅排序）
+- 板块/指数也可用 K 线工具：`ths kline 半导体`、`ths indicators 881121`、`ths intraday 1A0001`（目标可为代码/板块名/bk_ 前缀）
+- 公司大事：`ths events 600519 [--limit 20]`（近期重要事件：披露时间/股东大会/业绩披露/回购/分红/解禁）
+- 全局选项（任意位置）：`--compact` 单行 JSON、`--fields code,price,...` 字段裁剪——给下游 agent 省 token 时优先用；错误含 `code` 字段可分支处理；带短期缓存（行情 20s/K 线 30min/财报 6h），需要最新数据且怀疑缓存时设 THS_NO_CACHE=1
 - 本地自选：`ths watchlist list|add|remove [代码]`
 - 云自选（需登录）：`ths watchlist sync`（云→本地合并）、`ths watchlist push`（本地→云）
 - 表格输出：任意位置加 `--table`
